@@ -19,11 +19,12 @@ one, scores each answer against the task's own requirements and gives you a blin
 > routing; results do not generalize to multi-model or tool-using agents. Multi-model routing is on the roadmap, not in
 > the tool.
 
-Status (2026-11-06):
-- `generic_v1` (16 tasks): frozen and run once (`S2-20261102T234204Z-8661d0`, 32 of 32 cells returned). Blinded human
-  review is done. Results are not published yet.
-- `generic_v2` (40 tasks, all four routes for each task, plus an LLM router): frozen 2026-11-06 and tested with a mocked
-  model. Not run. No model has seen its 24 new tasks.
+Status (2026-11-07):
+- `generic_v1` (16 tasks): frozen and run once (`S2-20261102T234204Z-8661d0`, 32 of 32 cells returned). The blinded
+  review sheet was marked by an AI model, not a person. Results are not published yet.
+- `generic_v2` (40 tasks, all four routes for each task, plus an LLM router): frozen 2026-11-06 and run once
+  (`S3-20261107T201440Z-6f13fd`, 200 of 200 cells and 40 of 40 router calls returned). Its review sheet was also marked
+  by an AI model. Results are not published yet.
 
 ## Method (short)
 - Each task runs under the correct specialist prompt (reference) and under wrong ones, in fresh single-turn conversations.

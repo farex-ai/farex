@@ -81,6 +81,10 @@ The reviewer sees the task, the requirement and the response, in shuffled order,
 score. For `generic_v2` the sheet holds every answered cell the scorer did not pass, plus a random 25% of passes per
 type and route. The key is kept apart and git ignores it. See [Blinded review](review.md).
 
+So far the sheets for both runs were marked by an AI model, not a person. Agreement with the scorer is then agreement
+between two automated judges, and does not show that the scorer is right. A human review needs a reviewer who has not
+seen the run's results.
+
 **Statistics are descriptive.**
 Counts come with denominators. The one planned test is an exact sign test on paired latency and token differences
 between each wrong route and the reference. With 40 tasks, no significance claim is made about accuracy.
