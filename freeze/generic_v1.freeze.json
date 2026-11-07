@@ -1,0 +1,69 @@
+{
+  "suite": "generic_v1",
+  "status": "frozen",
+  "frozen_at": "2026-11-01T23:53:26.369+00:00",
+  "suite_version": "1.0.0",
+  "hashes": {
+    "tasks/generic_v1.json": "2edfad7688b06d7d5a0ee1ea984110dafe7bb83f58f65f3048dff3849c0670d6",
+    "prompts/generic_v1/coding.txt": "99560c64e9659bf280fb300d0ceffe1ff3752f7fcdc66e9b3acddfed7a314c2a",
+    "prompts/generic_v1/math.txt": "3d5b5659738a4ad07a7216add9008f24e070373fe532e40fef507304d28e943c",
+    "prompts/generic_v1/extraction.txt": "0774ad6cd3ddfcc96f1adca8ec2e7d1d48581151a4dd13cb351f00576bdb3cfe",
+    "prompts/generic_v1/evidence_qa.txt": "aac9c3c8a85194217c8a5f94466a49b9c88e9767a54f8653f4bedc00ea19fede",
+    "farex_pilot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "farex_pilot/scoring.py": "8d3321938d1f966f293b061f6eb897ad1d822ebc6496cb26fcbe4166fd9476fc",
+    "farex_pilot/sandbox.py": "1eacb4b6b49dd1f69a2fb0fe0d3cfefced152f98a7737458275c7ba3fbad1796",
+    "farex_pilot/sandbox_probes.py": "7c1bda69f7d672c8f35c41e4f427e7f3b7ab3585299aa95a806875d0674da131",
+    "farex_pilot/runner.py": "cd17202da495c09e3ad62137b99c7c137bf0dec423cfbef7cdb959be4ddd5d4f",
+    "tests/test_scoring.py": "c3d581fae56650edbb8f0d331111932a79a2a212b63a2c7e10fd171faca62271",
+    "tests/test_sandbox_probes.py": "48f2073e4cc414f659d1fc305c03e997f4a74e96faa283b18a4b677ffa95904e",
+    "tests/test_stage2_entry.py": "41c7bceeb411046a9f9bf04bbb0e6f2f33174634a481b124d3a82db9bd73531b"
+  },
+  "covered_files": [
+    "farex_pilot/__init__.py",
+    "farex_pilot/runner.py",
+    "farex_pilot/sandbox.py",
+    "farex_pilot/sandbox_probes.py",
+    "farex_pilot/scoring.py",
+    "prompts/generic_v1/coding.txt",
+    "prompts/generic_v1/evidence_qa.txt",
+    "prompts/generic_v1/extraction.txt",
+    "prompts/generic_v1/math.txt",
+    "tasks/generic_v1.json",
+    "tests/test_sandbox_probes.py",
+    "tests/test_scoring.py",
+    "tests/test_stage2_entry.py"
+  ],
+  "execution": {
+    "model": {
+      "name": "llama3:8b",
+      "manifest_sha256": "365c0bd3c000a25d28ddbf732fe1c6add414de7275464c4e4d1c3b5fcb5d8ad1",
+      "config_sha256": "3f8eb4da87fa7a3c9da615036b0dc418d31fef2a30b115ff33562588b32c691d",
+      "selection_reason": "continuity with the historical runs; not a claim that it is optimal"
+    },
+    "options": {
+      "temperature": 0,
+      "seed": 1234,
+      "num_predict": 512,
+      "timeout_s": 120
+    },
+    "order_seed": 20261031,
+    "max_response_chars": 4096,
+    "max_bracket_depth": 64,
+    "max_raw_bytes": 65536,
+    "sandbox_image": "python@sha256:cd89c30eda26ee911a4611b18680086e0ea42e6f5f8cbe653d07fa7958c9cec8",
+    "scorer_version": "generic_v1-scoring-1.2.0",
+    "harness_protocol": "farex-harness-2",
+    "output_cap_bytes": 65536,
+    "retry_policy": "connection refused/reset/aborted: 1 retry after 5 s; timeout, HTTP error, other transport errors, malformed or oversized body, scorer outcomes: none"
+  },
+  "stage2_order_sha256": "5c63945fb312b01c2aa852b39ebc495955fb68ef2f275d35220942acab071a29",
+  "sandbox_verification": {
+    "status": "verified",
+    "assertions_passed": 54,
+    "assertions_total": 54,
+    "image": "python@sha256:cd89c30eda26ee911a4611b18680086e0ea42e6f5f8cbe653d07fa7958c9cec8",
+    "recorded": "2026-11-01T23:52:54.063+00:00"
+  },
+  "scorer_validity": "NOT established: human review of real outputs is a Stage 2 activity",
+  "note": "Stage 2 re-checks every hash, the execution config, the order file, the model identity and the live Ollama digest, and re-runs sandbox verification, before any model call."
+}

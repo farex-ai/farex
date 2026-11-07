@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - name: Validate suites
+        run: |
+          python3 -m farex_pilot.runner --validate
+          python3 -m farex_pilot.stage3 --validate
+      # The real-container tests skip here: the sandbox image is arm64 and pinned, and CI never pulls it.
+      - name: Run tests
+        run: python3 -I -m unittest discover -s tests
+      - name: Run tool tests
+        run: python3 -I -m unittest discover -s tools
+      - name: Check tracked files
+        run: python3 tools/publish_check.py

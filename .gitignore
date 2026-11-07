@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.DS_Store
+
+# Secrets / credentials (the pilot never reads these)
+.env
+.env.*
+
+# Blinding keys: reviewers must not see condition labels
+artifacts/private/
+
+# Bulk generated output. Only reviewed, sanitized release bundles are published.
+artifacts/dry_run/
+artifacts/runs/
+# Execution order reveals condition labels before review
+artifacts/stage2_prep/
+
+# Internal notes (credential history, local-machine details). Never publish.
+internal/
+
+# Stage 3 execution order reveals condition labels before review
+artifacts/stage3_prep/

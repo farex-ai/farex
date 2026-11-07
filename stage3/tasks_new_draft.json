@@ -1,0 +1,802 @@
+{
+ "suite": "generic_v2_new_tasks",
+ "status": "owner_reviewed",
+ "notes": "24 new harder tasks for Stage 3; written 2026-11-02 against stage3/SPEC.md section 2; never shown to a model.",
+ "tasks": [
+  {
+   "id": "math_h1",
+   "type": "math",
+   "prompt": "A shop that opened in 2015 sells notebooks at $3.50 each and pens at $1.25 each. Maya buys 4 notebooks and 2 pens and pays with a $20 bill. How much change does she get, in dollars?",
+   "prompt_original": null,
+   "requirement": "Final number given is 3.5 (dollars).",
+   "expected": 3.5,
+   "expression": "20 - (4 * 3.50 + 2 * 1.25)",
+   "difficulty_features": [
+    "M1",
+    "M3"
+   ]
+  },
+  {
+   "id": "math_h2",
+   "type": "math",
+   "prompt": "A jacket costs $80 and the store has 12 of them in stock. The jacket is discounted by 25%, and then a 10% sales tax is added to the discounted price. What is the final price of one jacket, in dollars?",
+   "prompt_original": null,
+   "requirement": "Final number given is 66 (dollars).",
+   "expected": 66,
+   "expression": "80 * (1 - 25 / 100) * (1 + 10 / 100)",
+   "difficulty_features": [
+    "M2",
+    "M3"
+   ]
+  },
+  {
+   "id": "math_h3",
+   "type": "math",
+   "prompt": "Eggs are sold only in full cartons of 12. A bakery needs 100 eggs for Monday and 45 eggs for Tuesday and buys all of them at once. How many cartons must it buy?",
+   "prompt_original": null,
+   "requirement": "Final number given is 13 (cartons).",
+   "expected": 13,
+   "expression": "ceil((100 + 45) / 12)",
+   "difficulty_features": [
+    "M1",
+    "M4"
+   ]
+  },
+  {
+   "id": "math_h4",
+   "type": "math",
+   "prompt": "A 4-year-old car travels 150 kilometres in 2.5 hours, then 90 kilometres in 1.5 hours. What is its average speed for the whole trip, in kilometres per hour?",
+   "prompt_original": null,
+   "requirement": "Final number given is 60 (km/h).",
+   "expected": 60,
+   "expression": "(150 + 90) / (2.5 + 1.5)",
+   "difficulty_features": [
+    "M1",
+    "M3"
+   ]
+  },
+  {
+   "id": "math_h5",
+   "type": "math",
+   "prompt": "A recipe for 4 people uses 300 grams of flour. How many kilograms of flour are needed for 10 people?",
+   "prompt_original": null,
+   "requirement": "Final number given is 0.75 (kilograms).",
+   "expected": 0.75,
+   "expression": "300 / 4 * 10 / 1000",
+   "difficulty_features": [
+    "M1",
+    "M2"
+   ]
+  },
+  {
+   "id": "math_h6",
+   "type": "math",
+   "prompt": "A water tank holds 2,000 litres and is 35% full. Water is added at 40 litres per minute. How many minutes until the tank is full?",
+   "prompt_original": null,
+   "requirement": "Final number given is 32.5 (minutes).",
+   "expected": 32.5,
+   "expression": "(2000 - 2000 * 35 / 100) / 40",
+   "difficulty_features": [
+    "M1",
+    "M2"
+   ]
+  },
+  {
+   "id": "extraction_h1",
+   "type": "extraction",
+   "prompt": "From this text: 'Our old office was at 14 Elm Street. In March we moved to 220 Harbor Road, and our warehouse remains at 9 Mill Lane.', extract the current office address.",
+   "prompt_original": null,
+   "passage": "Our old office was at 14 Elm Street. In March we moved to 220 Harbor Road, and our warehouse remains at 9 Mill Lane.",
+   "requirement": "Gives 220 Harbor Road and neither the old office nor the warehouse address.",
+   "accepted": [
+    "220 Harbor Road"
+   ],
+   "accepted_in_passage": [
+    "220 Harbor Road"
+   ],
+   "distractors": [
+    "14 Elm Street",
+    "9 Mill Lane"
+   ],
+   "difficulty_features": [
+    "E1",
+    "E2",
+    "E3",
+    "E4"
+   ]
+  },
+  {
+   "id": "extraction_h2",
+   "type": "extraction",
+   "prompt": "From this text: 'For billing questions write to billing@northwind.example. Support used to be at help@northwind.example, but since June it is support@northwind.example. Press enquiries go to press@northwind.example.', extract the current support email address.",
+   "prompt_original": null,
+   "passage": "For billing questions write to billing@northwind.example. Support used to be at help@northwind.example, but since June it is support@northwind.example. Press enquiries go to press@northwind.example.",
+   "requirement": "Gives support@northwind.example and none of the other three addresses.",
+   "accepted": [
+    "support@northwind.example"
+   ],
+   "accepted_in_passage": [
+    "support@northwind.example"
+   ],
+   "distractors": [
+    "billing@northwind.example",
+    "help@northwind.example",
+    "press@northwind.example"
+   ],
+   "difficulty_features": [
+    "E1",
+    "E2",
+    "E3",
+    "E4"
+   ]
+  },
+  {
+   "id": "extraction_h3",
+   "type": "extraction",
+   "prompt": "From this text: 'The conference was first planned for April 3. It was moved to April 17 because of the venue, and the follow-up workshop is on May 2.', extract the date the conference will take place.",
+   "prompt_original": null,
+   "passage": "The conference was first planned for April 3. It was moved to April 17 because of the venue, and the follow-up workshop is on May 2.",
+   "requirement": "Gives April 17 (any common spelling) and neither April 3 nor May 2.",
+   "accepted": [
+    "April 17",
+    "April 17th",
+    "17 April",
+    "17th April",
+    "Apr 17",
+    "17th of April"
+   ],
+   "accepted_in_passage": [
+    "April 17"
+   ],
+   "distractors": [
+    "April 3",
+    "April 3rd",
+    "3 April",
+    "3rd April",
+    "3rd of April",
+    "Apr 3",
+    "May 2",
+    "May 2nd",
+    "2 May",
+    "2nd May",
+    "2nd of May"
+   ],
+   "difficulty_features": [
+    "E1",
+    "E2",
+    "E3",
+    "E4"
+   ],
+   "distractors_in_passage": [
+    "April 3",
+    "May 2"
+   ],
+   "notes": "Other spellings of the answer and distractors added 2026-11-04, before any model saw the task: 'April 17 and May 2nd' passed and '17th of April' failed (independent audit)."
+  },
+  {
+   "id": "extraction_h4",
+   "type": "extraction",
+   "prompt": "From this text: 'The report was drafted by Lena Ortiz and reviewed by Tom Becker. Final approval came from Priya Nair, the department head.', extract the name of the person who approved the report.",
+   "prompt_original": null,
+   "passage": "The report was drafted by Lena Ortiz and reviewed by Tom Becker. Final approval came from Priya Nair, the department head.",
+   "requirement": "Gives Priya Nair and neither of the other two names.",
+   "accepted": [
+    "Priya Nair"
+   ],
+   "accepted_in_passage": [
+    "Priya Nair"
+   ],
+   "distractors": [
+    "Lena Ortiz",
+    "Tom Becker"
+   ],
+   "difficulty_features": [
+    "E1",
+    "E2",
+    "E3",
+    "E4"
+   ]
+  },
+  {
+   "id": "extraction_h5",
+   "type": "extraction",
+   "prompt": "From this text: 'The invoice lists a subtotal of $840.00, a shipping fee of $35.00 and a discount of $50.00. The amount due is $825.00.', extract the amount due.",
+   "prompt_original": null,
+   "passage": "The invoice lists a subtotal of $840.00, a shipping fee of $35.00 and a discount of $50.00. The amount due is $825.00.",
+   "requirement": "Gives the amount 825 (e.g. $825.00) and none of the other amounts in the passage.",
+   "accepted_numbers": [
+    825
+   ],
+   "accepted_in_passage": [
+    "$825.00"
+   ],
+   "distractor_numbers": [
+    840,
+    35,
+    50
+   ],
+   "distractors_in_passage": [
+    "840",
+    "35",
+    "50"
+   ],
+   "difficulty_features": [
+    "E1",
+    "E3",
+    "E4"
+   ]
+  },
+  {
+   "id": "extraction_h6",
+   "type": "extraction",
+   "prompt": "From this text: 'Call the front desk at 555-0142. After 6 pm, calls are forwarded to the night line, 555-0187. The fax number is 555-0199.', extract the phone number to call after 6 pm.",
+   "prompt_original": null,
+   "passage": "Call the front desk at 555-0142. After 6 pm, calls are forwarded to the night line, 555-0187. The fax number is 555-0199.",
+   "requirement": "Gives 555-0187 and neither the front desk nor the fax number.",
+   "accepted": [
+    "555-0187"
+   ],
+   "accepted_in_passage": [
+    "555-0187"
+   ],
+   "distractors": [
+    "555-0142",
+    "555-0199"
+   ],
+   "difficulty_features": [
+    "E1",
+    "E2",
+    "E3",
+    "E4"
+   ]
+  },
+  {
+   "id": "evidence_qa_h1",
+   "type": "evidence_qa",
+   "prompt": "Claim: 'The Linden Library lends e-readers to all members'. Text: 'The Linden Library lends e-readers to all members except those under 16, who can borrow audiobooks instead.' Answer yes/no and cite one phrase.",
+   "prompt_original": null,
+   "passage": "The Linden Library lends e-readers to all members except those under 16, who can borrow audiobooks instead.",
+   "requirement": "Verdict no, with a quoted phrase showing members under 16 are excluded.",
+   "verdict": "no",
+   "support_spans": [
+    "under 16"
+   ],
+   "answer_from_passage_only": true,
+   "background_knowledge": "an exception means not all members",
+   "answerable_from_world_knowledge": false,
+   "difficulty_features": [
+    "Q1",
+    "Q4"
+   ],
+   "notes": "Support spans shortened 2026-11-03, owner approved, before any model saw the task: under the strict rule a correct short quote failed. Matching is by containment, so longer quotes still pass."
+  },
+  {
+   "id": "evidence_qa_h2",
+   "type": "evidence_qa",
+   "prompt": "Claim: 'The Arden Bridge is longer than 1 kilometre'. Text: 'The Arden Bridge spans 1,240 metres across the river. It was repainted in 2019.' Answer yes/no and cite one phrase.",
+   "prompt_original": null,
+   "passage": "The Arden Bridge spans 1,240 metres across the river. It was repainted in 2019.",
+   "requirement": "Verdict yes, with a quoted phrase showing the bridge spans 1,240 metres.",
+   "verdict": "yes",
+   "support_spans": [
+    "1,240 metres"
+   ],
+   "answer_from_passage_only": true,
+   "background_knowledge": "1 kilometre is 1,000 metres",
+   "answerable_from_world_knowledge": false,
+   "difficulty_features": [
+    "Q2",
+    "Q4"
+   ],
+   "notes": "Support spans shortened 2026-11-03, owner approved, before any model saw the task: under the strict rule a correct short quote failed. Matching is by containment, so longer quotes still pass."
+  },
+  {
+   "id": "evidence_qa_h3",
+   "type": "evidence_qa",
+   "prompt": "Claim: 'The 8:15 train reaches Halden before 9:00'. Text: 'The 8:15 train from Carrow stops at Bell Hill after 25 minutes. From Bell Hill it takes another 30 minutes to reach Halden.' Answer yes/no and cite one phrase.",
+   "prompt_original": null,
+   "passage": "The 8:15 train from Carrow stops at Bell Hill after 25 minutes. From Bell Hill it takes another 30 minutes to reach Halden.",
+   "requirement": "Verdict no, with a quoted phrase giving one of the two travel times (8:15 + 25 + 30 minutes = 9:10).",
+   "verdict": "no",
+   "support_spans": [
+    "25 minutes",
+    "30 minutes"
+   ],
+   "answer_from_passage_only": true,
+   "background_knowledge": "adding minutes to a clock time",
+   "answerable_from_world_knowledge": false,
+   "difficulty_features": [
+    "Q2",
+    "Q3"
+   ],
+   "notes": "Support spans shortened 2026-11-03, owner approved, before any model saw the task: under the strict rule a correct short quote failed. Matching is by containment, so longer quotes still pass."
+  },
+  {
+   "id": "evidence_qa_h4",
+   "type": "evidence_qa",
+   "prompt": "Claim: 'Pets are allowed in the Juniper Hotel's garden rooms'. Text: 'Pets are not allowed in the Juniper Hotel's main building. The garden rooms are the only rooms where pets may stay.' Answer yes/no and cite one phrase.",
+   "prompt_original": null,
+   "passage": "Pets are not allowed in the Juniper Hotel's main building. The garden rooms are the only rooms where pets may stay.",
+   "requirement": "Verdict yes, with a quoted phrase showing pets may stay in the garden rooms.",
+   "verdict": "yes",
+   "support_spans": [
+    "pets may stay"
+   ],
+   "answer_from_passage_only": true,
+   "background_knowledge": "none",
+   "answerable_from_world_knowledge": false,
+   "difficulty_features": [
+    "Q1",
+    "Q4"
+   ],
+   "notes": "Support spans shortened 2026-11-03, owner approved, before any model saw the task: under the strict rule a correct short quote failed. Matching is by containment, so longer quotes still pass."
+  },
+  {
+   "id": "evidence_qa_h5",
+   "type": "evidence_qa",
+   "prompt": "Claim: 'The Kell Reservoir was more than half full in August'. Text: 'The Kell Reservoir can hold 8 million litres. In August it held 3.6 million litres, down from 5.1 million in June.' Answer yes/no and cite one phrase.",
+   "prompt_original": null,
+   "passage": "The Kell Reservoir can hold 8 million litres. In August it held 3.6 million litres, down from 5.1 million in June.",
+   "requirement": "Verdict no, with a quoted phrase showing it held 3.6 million litres in August.",
+   "verdict": "no",
+   "support_spans": [
+    "3.6 million litres"
+   ],
+   "answer_from_passage_only": true,
+   "background_knowledge": "half of 8 million is 4 million",
+   "answerable_from_world_knowledge": false,
+   "difficulty_features": [
+    "Q2",
+    "Q4"
+   ],
+   "notes": "Support spans shortened 2026-11-03, owner approved, before any model saw the task: under the strict rule a correct short quote failed. Matching is by containment, so longer quotes still pass."
+  },
+  {
+   "id": "evidence_qa_h6",
+   "type": "evidence_qa",
+   "prompt": "Claim: 'Dana finished the race ahead of Omar'. Text: 'Omar finished the race in third place. Dana finished four places ahead of Omar's teammate Lee, who came fifth.' Answer yes/no and cite one phrase.",
+   "prompt_original": null,
+   "passage": "Omar finished the race in third place. Dana finished four places ahead of Omar's teammate Lee, who came fifth.",
+   "requirement": "Verdict yes, with a quoted phrase showing Dana finished four places ahead of Lee (fifth), i.e. first.",
+   "verdict": "yes",
+   "support_spans": [
+    "four places ahead"
+   ],
+   "answer_from_passage_only": true,
+   "background_knowledge": "counting places",
+   "answerable_from_world_knowledge": false,
+   "difficulty_features": [
+    "Q2",
+    "Q3"
+   ],
+   "notes": "Support spans shortened 2026-11-03, owner approved, before any model saw the task: under the strict rule a correct short quote failed. Matching is by containment, so longer quotes still pass."
+  },
+  {
+   "id": "coding_h1",
+   "type": "coding",
+   "prompt": "Write a Python function named run_length_encode(s) that compresses a string by replacing each run of the same character with the character followed by the length of the run, for example 'aaabcc' becomes 'a3b1c2'. An empty string returns an empty string. The function is case-sensitive, so 'aA' becomes 'a1A1'.",
+   "prompt_original": null,
+   "requirement": "Defines run_length_encode(s) that passes the hidden tests.",
+   "function_name": "run_length_encode",
+   "reference_solution": "def run_length_encode(s):\n    out = []\n    i = 0\n    while i < len(s):\n        j = i\n        while j < len(s) and s[j] == s[i]:\n            j += 1\n        out.append(s[i] + str(j - i))\n        i = j\n    return ''.join(out)\n",
+   "buggy_solution": "def run_length_encode(s):\n    out = []\n    for ch in dict.fromkeys(s):\n        out.append(ch + str(s.count(ch)))\n    return ''.join(out)\n",
+   "tests": [
+    {
+     "args": [
+      ""
+     ],
+     "expected": ""
+    },
+    {
+     "args": [
+      "a"
+     ],
+     "expected": "a1"
+    },
+    {
+     "args": [
+      "aaabcc"
+     ],
+     "expected": "a3b1c2"
+    },
+    {
+     "args": [
+      "aA"
+     ],
+     "expected": "a1A1"
+    },
+    {
+     "args": [
+      "zzzzzzzzzzzz"
+     ],
+     "expected": "z12"
+    },
+    {
+     "args": [
+      "abca"
+     ],
+     "expected": "a1b1c1a1"
+    }
+   ],
+   "difficulty_features": [
+    "C1",
+    "C2"
+   ]
+  },
+  {
+   "id": "coding_h2",
+   "type": "coding",
+   "prompt": "Write a Python function named running_max(nums) that returns a new list where each element is the largest value seen so far in nums. An empty list returns an empty list. The list may contain negative numbers.",
+   "prompt_original": null,
+   "requirement": "Defines running_max(nums) that passes the hidden tests.",
+   "function_name": "running_max",
+   "reference_solution": "def running_max(nums):\n    out = []\n    for x in nums:\n        out.append(x if not out else max(out[-1], x))\n    return out\n",
+   "buggy_solution": "def running_max(nums):\n    out = []\n    best = 0\n    for x in nums:\n        best = max(best, x)\n        out.append(best)\n    return out\n",
+   "tests": [
+    {
+     "args": [
+      []
+     ],
+     "expected": []
+    },
+    {
+     "args": [
+      [
+       3
+      ]
+     ],
+     "expected": [
+      3
+     ]
+    },
+    {
+     "args": [
+      [
+       1,
+       3,
+       2,
+       5,
+       4
+      ]
+     ],
+     "expected": [
+      1,
+      3,
+      3,
+      5,
+      5
+     ]
+    },
+    {
+     "args": [
+      [
+       -5,
+       -2,
+       -7
+      ]
+     ],
+     "expected": [
+      -5,
+      -2,
+      -2
+     ]
+    },
+    {
+     "args": [
+      [
+       2,
+       2,
+       1
+      ]
+     ],
+     "expected": [
+      2,
+      2,
+      2
+     ]
+    }
+   ],
+   "difficulty_features": [
+    "C1",
+    "C2"
+   ]
+  },
+  {
+   "id": "coding_h3",
+   "type": "coding",
+   "prompt": "Write a Python function named count_words(text) that returns a dictionary mapping each word to how many times it appears. Words are separated by one or more spaces, and counting ignores case, so keys are lowercase ('The' and 'the' are the same word). An empty string returns an empty dictionary.",
+   "prompt_original": null,
+   "requirement": "Defines count_words(text) that passes the hidden tests.",
+   "function_name": "count_words",
+   "reference_solution": "def count_words(text):\n    out = {}\n    for w in text.split():\n        w = w.lower()\n        out[w] = out.get(w, 0) + 1\n    return out\n",
+   "buggy_solution": "def count_words(text):\n    out = {}\n    for w in text.split():\n        out[w] = out.get(w, 0) + 1\n    return out\n",
+   "tests": [
+    {
+     "args": [
+      ""
+     ],
+     "expected": {}
+    },
+    {
+     "args": [
+      "a"
+     ],
+     "expected": {
+      "a": 1
+     }
+    },
+    {
+     "args": [
+      "The the THE"
+     ],
+     "expected": {
+      "the": 3
+     }
+    },
+    {
+     "args": [
+      "red blue red"
+     ],
+     "expected": {
+      "red": 2,
+      "blue": 1
+     }
+    },
+    {
+     "args": [
+      "  spaced   out "
+     ],
+     "expected": {
+      "spaced": 1,
+      "out": 1
+     }
+    }
+   ],
+   "difficulty_features": [
+    "C1",
+    "C3"
+   ]
+  },
+  {
+   "id": "coding_h4",
+   "type": "coding",
+   "prompt": "Write a Python function named second_largest(nums) that returns the second largest distinct value in the list nums. If there are fewer than two distinct values (including an empty list), return None. The list may contain negative numbers and repeated values.",
+   "prompt_original": null,
+   "requirement": "Defines second_largest(nums) that passes the hidden tests.",
+   "function_name": "second_largest",
+   "reference_solution": "def second_largest(nums):\n    vals = sorted(set(nums))\n    return vals[-2] if len(vals) >= 2 else None\n",
+   "buggy_solution": "def second_largest(nums):\n    return sorted(nums)[-2] if len(nums) >= 2 else None\n",
+   "tests": [
+    {
+     "args": [
+      [
+       3,
+       1,
+       2
+      ]
+     ],
+     "expected": 2
+    },
+    {
+     "args": [
+      [
+       5,
+       5,
+       4
+      ]
+     ],
+     "expected": 4
+    },
+    {
+     "args": [
+      [
+       7
+      ]
+     ],
+     "expected": null
+    },
+    {
+     "args": [
+      []
+     ],
+     "expected": null
+    },
+    {
+     "args": [
+      [
+       -1,
+       -3,
+       -2
+      ]
+     ],
+     "expected": -2
+    },
+    {
+     "args": [
+      [
+       2,
+       2
+      ]
+     ],
+     "expected": null
+    }
+   ],
+   "difficulty_features": [
+    "C1",
+    "C2"
+   ]
+  },
+  {
+   "id": "coding_h5",
+   "type": "coding",
+   "prompt": "Write a Python function named is_balanced(s) that returns True if the brackets (), [] and {} in the string s are balanced and correctly nested, and False otherwise. Characters other than brackets are ignored. An empty string is balanced.",
+   "prompt_original": null,
+   "requirement": "Defines is_balanced(s) that passes the hidden tests.",
+   "function_name": "is_balanced",
+   "reference_solution": "def is_balanced(s):\n    pairs = {')': '(', ']': '[', '}': '{'}\n    stack = []\n    for ch in s:\n        if ch in '([{':\n            stack.append(ch)\n        elif ch in pairs:\n            if not stack or stack.pop() != pairs[ch]:\n                return False\n    return not stack\n",
+   "buggy_solution": "def is_balanced(s):\n    return all(s.count(o) == s.count(c) for o, c in ('()', '[]', '{}'))\n",
+   "tests": [
+    {
+     "args": [
+      ""
+     ],
+     "expected": true
+    },
+    {
+     "args": [
+      "()"
+     ],
+     "expected": true
+    },
+    {
+     "args": [
+      "([]{})"
+     ],
+     "expected": true
+    },
+    {
+     "args": [
+      "(]"
+     ],
+     "expected": false
+    },
+    {
+     "args": [
+      "(()"
+     ],
+     "expected": false
+    },
+    {
+     "args": [
+      "a(b)c"
+     ],
+     "expected": true
+    },
+    {
+     "args": [
+      ")("
+     ],
+     "expected": false
+    },
+    {
+     "args": [
+      "([)]"
+     ],
+     "expected": false
+    }
+   ],
+   "difficulty_features": [
+    "C1",
+    "C2"
+   ],
+   "notes": "Test '([)]' added 2026-11-04, before any model saw the task: the prompt requires correct nesting and no test checked it (independent audit)."
+  },
+  {
+   "id": "coding_h6",
+   "type": "coding",
+   "prompt": "Write a Python function named chunk_list(lst, n) that splits the list lst into consecutive chunks of size n and returns a list of those chunks; the last chunk may be shorter. An empty list returns an empty list, and if n is 0 or negative, return an empty list.",
+   "prompt_original": null,
+   "requirement": "Defines chunk_list(lst, n) that passes the hidden tests.",
+   "function_name": "chunk_list",
+   "reference_solution": "def chunk_list(lst, n):\n    if n <= 0:\n        return []\n    return [lst[i:i + n] for i in range(0, len(lst), n)]\n",
+   "buggy_solution": "def chunk_list(lst, n):\n    if n <= 0:\n        return []\n    return [lst[i:i + n] for i in range(0, len(lst) - len(lst) % n, n)]\n",
+   "tests": [
+    {
+     "args": [
+      [
+       1,
+       2,
+       3,
+       4,
+       5
+      ],
+      2
+     ],
+     "expected": [
+      [
+       1,
+       2
+      ],
+      [
+       3,
+       4
+      ],
+      [
+       5
+      ]
+     ]
+    },
+    {
+     "args": [
+      [],
+      3
+     ],
+     "expected": []
+    },
+    {
+     "args": [
+      [
+       1,
+       2
+      ],
+      5
+     ],
+     "expected": [
+      [
+       1,
+       2
+      ]
+     ]
+    },
+    {
+     "args": [
+      [
+       1,
+       2,
+       3
+      ],
+      1
+     ],
+     "expected": [
+      [
+       1
+      ],
+      [
+       2
+      ],
+      [
+       3
+      ]
+     ]
+    },
+    {
+     "args": [
+      [
+       1,
+       2,
+       3
+      ],
+      0
+     ],
+     "expected": []
+    },
+    {
+     "args": [
+      [
+       1,
+       2,
+       3
+      ],
+      -1
+     ],
+     "expected": []
+    }
+   ],
+   "difficulty_features": [
+    "C1",
+    "C2"
+   ],
+   "notes": "Test for negative n added 2026-11-03, before any model saw the task: the prompt states that case and C1 needs it covered."
+  }
+ ]
+}

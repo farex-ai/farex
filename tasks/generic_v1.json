@@ -1,0 +1,369 @@
+{
+  "suite": "generic_v1",
+  "suite_version": "1.0.0-draft",
+  "status": "draft: wording awaiting owner approval; not frozen",
+  "notes": [
+    "prompt = wording used in the pilot; prompt_original = wording in tasks/tasks.json (null for new tasks).",
+    "Wording rule: keep everything needed to define correctness (function names/behaviour, units, requested fields such as yes/no + quote). Drop only agent-style output contracts ('Return only ...') that the format-tolerant scorers do not need.",
+    "Hypothesis, not a finding: the original 'Return only ...' wording may reduce sensitivity to the specialist system prompt. This has not been measured.",
+    "evidence_qa metadata: answer_from_passage_only says whether the verdict follows from the passage plus the listed background_knowledge; answerable_from_world_knowledge says whether a model could reach the same verdict without reading the passage.",
+    "evidence_qa (revised 2026-11-01): all four items use fictional passages. Only yes/no verdicts exist in this suite; every reference verdict must follow from the passage (no 'not established' category is defined, so none is used). 2 yes, 2 no."
+  ],
+  "tasks": [
+    {
+      "id": "math_1",
+      "type": "math",
+      "prompt": "What is 17 * 23?",
+      "prompt_original": "What is 17 * 23? Return only the number.",
+      "requirement": "Final number given is 391.",
+      "expected": 391,
+      "expression": "17 * 23"
+    },
+    {
+      "id": "math_2",
+      "type": "math",
+      "prompt": "What is 144 / 12?",
+      "prompt_original": "What is 144 / 12? Return only the number.",
+      "requirement": "Final number given is 12.",
+      "expected": 12,
+      "expression": "144 / 12"
+    },
+    {
+      "id": "math_3",
+      "type": "math",
+      "prompt": "What is 99 + 101?",
+      "prompt_original": "What is 99 + 101? Return only the number.",
+      "requirement": "Final number given is 200.",
+      "expected": 200,
+      "expression": "99 + 101"
+    },
+    {
+      "id": "math_4",
+      "type": "math",
+      "prompt": "Pencils are sold in packs of 5 for $1.20 per pack. How much do 25 pencils cost, in dollars?",
+      "prompt_original": null,
+      "requirement": "Final number given is 6 (dollars).",
+      "expected": 6,
+      "expression": "(25 / 5) * 1.20"
+    },
+    {
+      "id": "extraction_1",
+      "type": "extraction",
+      "prompt": "From this text: 'The meeting is on December 25th at 3pm in New York', extract the date.",
+      "prompt_original": "From this text: 'The meeting is on December 25th at 3pm in New York', extract the date.",
+      "passage": "The meeting is on December 25th at 3pm in New York",
+      "requirement": "Gives the date December 25th (any common spelling) and does not include the location.",
+      "accepted": [
+        "December 25th",
+        "December 25",
+        "Dec 25",
+        "Dec 25th",
+        "25 December",
+        "25th December",
+        "25th of December"
+      ],
+      "accepted_in_passage": [
+        "December 25th"
+      ],
+      "distractors": [
+        "New York"
+      ]
+    },
+    {
+      "id": "extraction_2",
+      "type": "extraction",
+      "prompt": "From this text: 'Dr. Smith works at Stanford University', extract the organization.",
+      "prompt_original": "From this text: 'Dr. Smith works at Stanford University', extract the organization.",
+      "passage": "Dr. Smith works at Stanford University",
+      "requirement": "Gives Stanford University (or Stanford) and does not include the person's name.",
+      "accepted": [
+        "Stanford University",
+        "Stanford"
+      ],
+      "accepted_in_passage": [
+        "Stanford University"
+      ],
+      "distractors": [
+        "Smith"
+      ]
+    },
+    {
+      "id": "extraction_3",
+      "type": "extraction",
+      "prompt": "From this text: 'Invoice #4471 was issued on 3 March 2026 for a total of $1,250.00, payable within 30 days.', extract the total amount.",
+      "prompt_original": null,
+      "passage": "Invoice #4471 was issued on 3 March 2026 for a total of $1,250.00, payable within 30 days.",
+      "requirement": "Gives the amount 1250 (e.g. $1,250.00) and none of the other numbers in the passage.",
+      "accepted_numbers": [
+        1250
+      ],
+      "accepted_in_passage": [
+        "$1,250.00"
+      ],
+      "distractor_numbers": [
+        4471,
+        2026,
+        30
+      ],
+      "distractors_in_passage": [
+        "4471",
+        "2026",
+        "30"
+      ]
+    },
+    {
+      "id": "extraction_4",
+      "type": "extraction",
+      "prompt": "From this text: 'Please send the signed form to maria.lopez@example.org, not to the old address m.lopez@example.com.', extract the email address the form should be sent to.",
+      "prompt_original": null,
+      "passage": "Please send the signed form to maria.lopez@example.org, not to the old address m.lopez@example.com.",
+      "requirement": "Gives maria.lopez@example.org and not the old address.",
+      "accepted": [
+        "maria.lopez@example.org"
+      ],
+      "accepted_in_passage": [
+        "maria.lopez@example.org"
+      ],
+      "distractors": [
+        "m.lopez@example.com"
+      ]
+    },
+    {
+      "id": "evidence_qa_1",
+      "type": "evidence_qa",
+      "prompt": "Claim: 'The Harbor Line runs trains on Sundays.' Text: 'The Harbor Line operates Monday through Saturday. Sunday service is suspended for maintenance until spring.' Answer yes/no and cite one phrase.",
+      "prompt_original": null,
+      "passage": "The Harbor Line operates Monday through Saturday. Sunday service is suspended for maintenance until spring.",
+      "requirement": "Verdict no, with a quoted phrase showing Sunday service is suspended.",
+      "verdict": "no",
+      "support_spans": [
+        "Sunday service is suspended for maintenance"
+      ],
+      "answer_from_passage_only": true,
+      "background_knowledge": "none (the passage states the Sunday suspension directly)",
+      "answerable_from_world_knowledge": false
+    },
+    {
+      "id": "evidence_qa_2",
+      "type": "evidence_qa",
+      "prompt": "Claim: 'The Greenvale reservoir holds more than 3 million litres.' Text: 'The Greenvale reservoir holds 3.2 million litres when full and is drawn down by about 10 percent each summer.' Answer yes/no and cite one phrase.",
+      "prompt_original": "Claim: 'It rains every day in Seattle'. Text: 'Seattle has 152 rainy days per year, which is less than many other US cities.' Answer yes/no and cite one phrase.",
+      "passage": "The Greenvale reservoir holds 3.2 million litres when full and is drawn down by about 10 percent each summer.",
+      "requirement": "Verdict yes, with a quoted phrase showing the reservoir holds 3.2 million litres.",
+      "verdict": "yes",
+      "support_spans": [
+        "The Greenvale reservoir holds 3.2 million litres"
+      ],
+      "answer_from_passage_only": true,
+      "background_knowledge": "3.2 million is more than 3 million",
+      "answerable_from_world_knowledge": false,
+      "replaces_original": "Seattle 152-rainy-days item: the original reference quote 'less than many other US cities' did not refute the claim; the item was also answerable from common knowledge."
+    },
+    {
+      "id": "evidence_qa_3",
+      "type": "evidence_qa",
+      "prompt": "Claim: 'The Calder Bridge opened before 1950'. Text: 'Construction of the Calder Bridge began in 1931, and the bridge opened to traffic in 1937.' Answer yes/no and cite one phrase.",
+      "prompt_original": null,
+      "passage": "Construction of the Calder Bridge began in 1931, and the bridge opened to traffic in 1937.",
+      "requirement": "Verdict yes, with a quoted phrase showing the bridge opened in 1937.",
+      "verdict": "yes",
+      "support_spans": [
+        "the bridge opened to traffic in 1937"
+      ],
+      "answer_from_passage_only": true,
+      "background_knowledge": "1937 is before 1950",
+      "answerable_from_world_knowledge": false
+    },
+    {
+      "id": "evidence_qa_4",
+      "type": "evidence_qa",
+      "prompt": "Claim: 'The Marlow Museum is open on Mondays'. Text: 'The Marlow Museum is open Tuesday through Sunday from 10am to 5pm and closed on public holidays.' Answer yes/no and cite one phrase.",
+      "prompt_original": null,
+      "passage": "The Marlow Museum is open Tuesday through Sunday from 10am to 5pm and closed on public holidays.",
+      "requirement": "Verdict no, with a quoted phrase showing the museum is open Tuesday through Sunday.",
+      "verdict": "no",
+      "support_spans": [
+        "open Tuesday through Sunday from 10am to 5pm"
+      ],
+      "answer_from_passage_only": true,
+      "background_knowledge": "Monday is not in the range Tuesday through Sunday",
+      "answerable_from_world_knowledge": false
+    },
+    {
+      "id": "coding_1",
+      "type": "coding",
+      "prompt": "Write a Python function named reverse_string(s) that returns the string s reversed. An empty string should return an empty string.",
+      "prompt_original": "Write a Python function to reverse a string. Return only the function.",
+      "requirement": "Defines reverse_string(s) that passes the hidden tests.",
+      "function_name": "reverse_string",
+      "reference_solution": "def reverse_string(s):\n    return s[::-1]\n",
+      "buggy_solution": "def reverse_string(s):\n    return s\n",
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": ""
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": "a"
+        },
+        {
+          "args": [
+            "abc"
+          ],
+          "expected": "cba"
+        },
+        {
+          "args": [
+            "ab cd!"
+          ],
+          "expected": "!dc ba"
+        }
+      ]
+    },
+    {
+      "id": "coding_2",
+      "type": "coding",
+      "prompt": "Write a Python function named find_max(lst) that returns the largest number in a non-empty list of numbers.",
+      "prompt_original": "Write a Python function to find the max in a list. Return only the function.",
+      "requirement": "Defines find_max(lst) that passes the hidden tests.",
+      "function_name": "find_max",
+      "reference_solution": "def find_max(lst):\n    return max(lst)\n",
+      "buggy_solution": "def find_max(lst):\n    return lst[0]\n",
+      "tests": [
+        {
+          "args": [
+            [
+              3,
+              1,
+              2
+            ]
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            [
+              -5,
+              -2,
+              -9
+            ]
+          ],
+          "expected": -2
+        },
+        {
+          "args": [
+            [
+              7
+            ]
+          ],
+          "expected": 7
+        },
+        {
+          "args": [
+            [
+              1.5,
+              2.5,
+              0
+            ]
+          ],
+          "expected": 2.5
+        }
+      ]
+    },
+    {
+      "id": "coding_3",
+      "type": "coding",
+      "prompt": "Write a Python function named is_palindrome(s) that returns True if the string s reads the same forwards and backwards, and False otherwise. The check is case-sensitive and every character counts, including spaces and punctuation. An empty string is a palindrome.",
+      "prompt_original": "Write a Python function to check if a string is a palindrome. Return only the function.",
+      "requirement": "Defines is_palindrome(s) that passes the hidden tests.",
+      "function_name": "is_palindrome",
+      "reference_solution": "def is_palindrome(s):\n    return s == s[::-1]\n",
+      "buggy_solution": "def is_palindrome(s):\n    t = s.lower()\n    return t == t[::-1]\n",
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "a"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "abba"
+          ],
+          "expected": true
+        },
+        {
+          "args": [
+            "Aa"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "abc"
+          ],
+          "expected": false
+        },
+        {
+          "args": [
+            "a b a"
+          ],
+          "expected": true
+        }
+      ]
+    },
+    {
+      "id": "coding_4",
+      "type": "coding",
+      "prompt": "Write a Python function named count_vowels(s) that returns how many vowels (a, e, i, o, u, case-insensitive; y is not a vowel) the string s contains.",
+      "prompt_original": null,
+      "requirement": "Defines count_vowels(s) that passes the hidden tests.",
+      "function_name": "count_vowels",
+      "reference_solution": "def count_vowels(s):\n    return sum(1 for c in s.lower() if c in 'aeiou')\n",
+      "buggy_solution": "def count_vowels(s):\n    return sum(1 for c in s if c in 'aeiou')\n",
+      "tests": [
+        {
+          "args": [
+            ""
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "xyz"
+          ],
+          "expected": 0
+        },
+        {
+          "args": [
+            "AEIOU"
+          ],
+          "expected": 5
+        },
+        {
+          "args": [
+            "Hello World"
+          ],
+          "expected": 3
+        },
+        {
+          "args": [
+            "rhythm"
+          ],
+          "expected": 0
+        }
+      ]
+    }
+  ]
+}

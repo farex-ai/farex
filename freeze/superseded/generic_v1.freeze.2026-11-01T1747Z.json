@@ -1,0 +1,62 @@
+{
+  "suite": "generic_v1",
+  "status": "frozen",
+  "frozen_at": "2026-11-01T17:47:17.092+00:00",
+  "suite_version": "1.0.0",
+  "hashes": {
+    "tasks/generic_v1.json": "2edfad7688b06d7d5a0ee1ea984110dafe7bb83f58f65f3048dff3849c0670d6",
+    "prompts/generic_v1/coding.txt": "99560c64e9659bf280fb300d0ceffe1ff3752f7fcdc66e9b3acddfed7a314c2a",
+    "prompts/generic_v1/math.txt": "3d5b5659738a4ad07a7216add9008f24e070373fe532e40fef507304d28e943c",
+    "prompts/generic_v1/extraction.txt": "0774ad6cd3ddfcc96f1adca8ec2e7d1d48581151a4dd13cb351f00576bdb3cfe",
+    "prompts/generic_v1/evidence_qa.txt": "aac9c3c8a85194217c8a5f94466a49b9c88e9767a54f8653f4bedc00ea19fede",
+    "farex_pilot/scoring.py": "5885701a91936b5a87b637095f6417fd623a131bdd7b4d04a5d2110ee3a1cfa0",
+    "farex_pilot/sandbox.py": "08da861e2e3f403a7871454c677e8f2a4261d32378183af8b555acd79fdcfed9",
+    "farex_pilot/sandbox_probes.py": "5d6bc0c059b84e2c2074c763aa9b94cf2418d66b142866e6cbc9bab957171bc6",
+    "farex_pilot/runner.py": "695e3722ae382f67100cbae9756418c6983e4999a7102ea09b8e05590a8940b3",
+    "tests/test_scoring.py": "0165bcbf36b595d862349884ffbe54904cb47edeb587995e7e83e339b7737a2e",
+    "tests/test_sandbox_probes.py": "28f872f583803f96255b93a24820b56bc2ef6102fd064fabf4e123c0ba90d53d"
+  },
+  "covered_files": [
+    "farex_pilot/runner.py",
+    "farex_pilot/sandbox.py",
+    "farex_pilot/sandbox_probes.py",
+    "farex_pilot/scoring.py",
+    "prompts/generic_v1/coding.txt",
+    "prompts/generic_v1/evidence_qa.txt",
+    "prompts/generic_v1/extraction.txt",
+    "prompts/generic_v1/math.txt",
+    "tasks/generic_v1.json",
+    "tests/test_sandbox_probes.py",
+    "tests/test_scoring.py"
+  ],
+  "execution": {
+    "model": {
+      "name": "llama3:8b",
+      "manifest_sha256": "365c0bd3c000a25d28ddbf732fe1c6add414de7275464c4e4d1c3b5fcb5d8ad1",
+      "config_sha256": "3f8eb4da87fa7a3c9da615036b0dc418d31fef2a30b115ff33562588b32c691d",
+      "selection_reason": "continuity with the historical runs; not a claim that it is optimal"
+    },
+    "options": {
+      "temperature": 0,
+      "seed": 1234,
+      "num_predict": 512,
+      "timeout_s": 120
+    },
+    "order_seed": 20261031,
+    "max_response_chars": 4096,
+    "max_bracket_depth": 64,
+    "max_raw_bytes": 65536,
+    "sandbox_image": "python@sha256:cd89c30eda26ee911a4611b18680086e0ea42e6f5f8cbe653d07fa7958c9cec8",
+    "scorer_version": "generic_v1-scoring-1.1.0-draft",
+    "retry_policy": "transport errors: 1 retry after 5 s; others: none"
+  },
+  "stage2_order_sha256": "5c63945fb312b01c2aa852b39ebc495955fb68ef2f275d35220942acab071a29",
+  "sandbox_verification": {
+    "status": "verified",
+    "assertions_passed": 44,
+    "assertions_total": 44,
+    "image": "python@sha256:cd89c30eda26ee911a4611b18680086e0ea42e6f5f8cbe653d07fa7958c9cec8"
+  },
+  "scorer_validity": "NOT established: human review of real outputs is a Stage 2 activity",
+  "note": "Stage 2 refuses to run unless status == 'frozen' and every hash matches."
+}

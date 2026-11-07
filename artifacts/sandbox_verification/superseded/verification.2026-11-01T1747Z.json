@@ -1,0 +1,254 @@
+{
+  "recorded": "2026-11-01T17:47:17.028+00:00",
+  "status": "verified",
+  "image": "python@sha256:cd89c30eda26ee911a4611b18680086e0ea42e6f5f8cbe653d07fa7958c9cec8",
+  "assertions_passed": 44,
+  "assertions_total": 44,
+  "runtime": {
+    "docker_server": "29.5.2",
+    "docker_arch": "linux/arm64",
+    "container_python": {
+      "python": "3.14.10",
+      "impl": "CPython",
+      "machine": "aarch64"
+    },
+    "platform": "linux/arm64"
+  },
+  "sandbox_file_hashes": {
+    "farex_pilot/sandbox.py": "08da861e2e3f403a7871454c677e8f2a4261d32378183af8b555acd79fdcfed9",
+    "farex_pilot/sandbox_probes.py": "5d6bc0c059b84e2c2074c763aa9b94cf2418d66b142866e6cbc9bab957171bc6"
+  },
+  "controls": {
+    "nonroot_no_privileges": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "uid is 65534 (nobody)",
+          "ok": true
+        },
+        {
+          "name": "gid is 65534",
+          "ok": true
+        },
+        {
+          "name": "effective capabilities are empty",
+          "ok": true
+        },
+        {
+          "name": "bounding capabilities are empty",
+          "ok": true
+        },
+        {
+          "name": "no-new-privileges set",
+          "ok": true
+        }
+      ]
+    },
+    "network_enforced": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "positive control: bridge container reaches host listener",
+          "ok": true
+        },
+        {
+          "name": "network=none: only loopback interface exists",
+          "ok": true
+        },
+        {
+          "name": "network=none: host listener NOT reachable",
+          "ok": true
+        },
+        {
+          "name": "network=none: external address NOT reachable",
+          "ok": true
+        },
+        {
+          "name": "network=none: loopback still works (sanity)",
+          "ok": true
+        }
+      ]
+    },
+    "readonly_root_and_mounts": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "root mount is read-only",
+          "ok": true
+        },
+        {
+          "name": "write to / refused",
+          "ok": true
+        },
+        {
+          "name": "write to /work refused",
+          "ok": true
+        },
+        {
+          "name": "/work mount is read-only",
+          "ok": true
+        },
+        {
+          "name": "no unexpected mount points (runtime /proc, /sys, /dev masks allowed)",
+          "ok": true
+        }
+      ]
+    },
+    "scratch_space_limits": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "512 KiB file written to /tmp",
+          "ok": true
+        },
+        {
+          "name": "2 MiB single file refused (fsize limit)",
+          "ok": true
+        },
+        {
+          "name": "total /tmp fill capped at about 16 MiB (tmpfs size)",
+          "ok": true
+        },
+        {
+          "name": "/tmp is noexec: exec refused",
+          "ok": true
+        }
+      ]
+    },
+    "host_and_credential_isolation": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "host canary file not readable",
+          "ok": true
+        },
+        {
+          "name": "host canary environment variable not forwarded",
+          "ok": true
+        },
+        {
+          "name": "no credential-like environment variables",
+          "ok": true
+        },
+        {
+          "name": "/Users (host home tree) not visible",
+          "ok": true
+        },
+        {
+          "name": "home directory has no host entries",
+          "ok": true
+        },
+        {
+          "name": "no Docker socket",
+          "ok": true
+        },
+        {
+          "name": "no repository mount",
+          "ok": true
+        },
+        {
+          "name": "only /work (the one input bind) is a host-backed mount",
+          "ok": true
+        }
+      ]
+    },
+    "memory_and_swap_limits": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "memory.max = 256 MiB",
+          "ok": true
+        },
+        {
+          "name": "swap is disabled (memory.swap.max = 0)",
+          "ok": true
+        },
+        {
+          "name": "touching 512 MiB does not succeed (killed or refused)",
+          "ok": true
+        }
+      ]
+    },
+    "cpu_pids_and_rlimits": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "cpu.max = 1 CPU (100000/100000)",
+          "ok": true
+        },
+        {
+          "name": "pids.max = 32",
+          "ok": true
+        },
+        {
+          "name": "RLIMIT_NOFILE = 64",
+          "ok": true
+        },
+        {
+          "name": "RLIMIT_FSIZE = 1 MiB",
+          "ok": true
+        }
+      ]
+    },
+    "fork_bomb_bounded": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "fork loop stopped by the process limit",
+          "ok": true
+        },
+        {
+          "name": "concurrent children bounded by pids limit",
+          "ok": true
+        }
+      ]
+    },
+    "output_size_host_cap": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "5 MiB stdout produced inside container (container-side not capped)",
+          "ok": true
+        },
+        {
+          "name": "host retains at most OUTPUT_CAP_BYTES (host-side cap)",
+          "ok": true
+        }
+      ]
+    },
+    "wall_clock_timeout_cleanup": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "infinite loop reported as timed out",
+          "ok": true
+        },
+        {
+          "name": "finished within wall clock + 5 s",
+          "ok": true
+        },
+        {
+          "name": "no container left behind after timeout",
+          "ok": true
+        }
+      ]
+    },
+    "reference_code_checks": {
+      "status": "pass",
+      "checks": [
+        {
+          "name": "reference solution passes all hidden tests",
+          "ok": true
+        },
+        {
+          "name": "buggy solution fails",
+          "ok": true
+        },
+        {
+          "name": "no timeout on reference",
+          "ok": true
+        }
+      ]
+    }
+  }
+}
